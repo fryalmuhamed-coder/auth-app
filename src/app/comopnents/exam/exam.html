@@ -1,0 +1,35 @@
+<div class="max-w-5xl mx-auto p-4 md:p-6">
+  <div class="flex items-center gap-4 mb-8">
+    <button
+      class="bg-white border border-gray-200 p-4 rounded-lg shadow-sm hover:bg-gray-50 transition-colors"
+    >
+      <i class="fa-solid fa-chevron-left text-blue-600"></i>
+    </button>
+
+    <div class="flex-1 flex items-center p-4 bg-blue-600 text-white rounded-lg shadow-md">
+      <i class="fa-solid fa-book-open text-2xl mr-4"></i>
+      <h2 class="text-xl font-bold italic tracking-wide">Flutter Development Exams</h2>
+    </div>
+  </div>
+
+  <div class="space-y-4">
+    @for (exam of exams; track exam.title) {
+      <div
+        routerLink="/dashboard/questions"
+        class="bg-blue-50 border border-gray-100 p-2 rounded-lg flex justify-between items-center hover:shadow-md transition-shadow cursor-pointer"
+      >
+        <div>
+          <h3 class="text-blue-900 font-bold text-lg mb-1">{{ exam.title }}</h3>
+          <p class="text-gray-400 text-sm font-medium">{{ exam.questions }} Questions</p>
+        </div>
+
+        <div class="text-right">
+          <div class="flex items-center text-gray-500 text-sm font-medium mb-2">
+            <i class="fa-regular fa-clock mr-2"></i>
+            <span>Duration: {{ exam.duration }} minutes</span>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="p-4 md:p-8">
+  <div class="flex items-center p-5 mb-10 bg-blue-600 text-white shadow-md">
+    <i class="fa-solid fa-graduation-cap text-3xl mr-4"></i>
+    <h2 class="text-2xl font-bold tracking-wide italic">Diplomas</h2>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    @for (item of diplomas; track item.id) {
+      <div
+        [routerLink]="['/dashboard/exams', item]"
+        class="group relative bg-white overflow-hidden cursor-pointer border-2 border-transparent transition-all duration-500"
+      >
+        <div class="aspect-2/3 w-full overflow-hidden">
+          <img
+            [src]="item.image"
+            [alt]="item.title"
+            class="w-full h-full object-cover duration-700"
+          />
+        </div>
+
+        <div class="absolute bottom-0 left-0 right-0 bg-blue-400/50 backdrop-blur-sm py-4 px-2">
+          <h3
+            class="text-white text-center font-bold text-sm md:text-base tracking-tight leading-tight"
+          >
+            {{ item.title }}
+          </h3>
+        </div>
+      </div>
+    }
+  </div>
+</div>

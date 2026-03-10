@@ -1,0 +1,71 @@
+<div class="max-w-md mx-auto">
+  <h2 class="text-2xl font-bold text-black mb-2">Welcome Back!</h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="space-y-4">
+    <div>
+      <label class="block text-sm font-medium text-gray-700">User Name</label>
+      <div class="relative mt-1">
+        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+          <i class="fa-solid fa-user"></i>
+        </span>
+        <input
+          formControlName="userName"
+          type="text"
+          class="block w-full pl-10 pr-3 py-2 border text-gray-400 border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none"
+          [class.border-red-600]="loginForm.get('userName')?.touched && loginForm.get('userName')?.invalid"
+          placeholder="Enter your username"
+        />
+      </div>
+      <p *ngIf="loginForm.get('userName')?.touched && loginForm.get('userName')?.invalid" class="text-red-600 text-xs mt-1">
+        <span *ngIf="loginForm.get('userName')?.errors?.['required']">Your Username is required</span>
+        <span *ngIf="loginForm.get('userName')?.errors?.['minlength']">Username must be at least 9 characters</span>
+      </p>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Password</label>
+      <div class="relative mt-1">
+        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+          <i class="fa-solid fa-lock"></i>
+        </span>
+        <input
+          formControlName="password"
+          [type]="showPassword ? 'text' : 'password'" 
+          class="block w-full pl-10 pr-10 py-2 border border-gray-300 text-gray-400 focus:ring-2 focus:ring-blue-500 outline-none"
+          [class.border-red-500]="loginForm.get('password')?.touched && loginForm.get('password')?.invalid"
+          placeholder="******"
+        />
+        <button
+          type="button"
+          (click)="togglePassword()"
+          class="absolute inset-y-0 right-3 flex items-center text-gray-400"
+        >
+          <i class="fa-solid" [ngClass]="showPassword ? 'fa-eye' : 'fa-eye-slash'"></i>
+        </button>
+      </div>
+      <p *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" class="text-red-600 text-xs mt-1">
+        <span *ngIf="loginForm.get('password')?.errors?.['required']">Your password is required</span>
+      </p>
+      
+      <div class="flex justify-end mt-2">
+        <a routerLink="/auth/forgotpassword" class="text-sm text-blue-600 hover:underline">
+          forgot your password?
+        </a>
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="w-full bg-blue-600 text-white py-3 px-4 hover:bg-blue-700 transition duration-200"
+    >
+      login
+    </button>
+
+    <div class="mt-4">
+      <p class="text-gray-500">
+        don't have an account?
+        <a routerLink="/auth/register" class="text-blue-600 hover:underline"> Create Account </a>
+      </p>
+    </div>
+  </form>
+</div>
